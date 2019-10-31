@@ -2,14 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
 
-export default function Listitem({name, isComplete, changeComplete, deleteItem}) {
+export default function Listitem({name, isComplete, changeComplete, deleteItem, changeStar, isStar}) {
   return (
     <View style={styles.listitembox}>
         <View style={styles.makerow}>
             <TouchableOpacity onPress={changeComplete}>
                 <AntDesign name={isComplete? "checkcircle":"frowno"} size={20} style={styles.checkmargin}/>
             </TouchableOpacity>
-            <Text style={styles.item}>{name}</Text>
+            <TouchableOpacity onPress={changeStar}>
+                <AntDesign name={isStar? "star":"staro"} size={20} style={styles.checkmargin}/>
+            </TouchableOpacity>
+            <Text style={styles.item}>{name}</Text>            
         </View>        
         <TouchableOpacity onPress={deleteItem}>
           <AntDesign name="close" size={20} />

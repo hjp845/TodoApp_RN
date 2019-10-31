@@ -35,12 +35,18 @@ export default class App extends React.Component {
   _makeTodoItem=({item, index})=>{
     return (
       <Listitem name = {item.title} 
-      isComplete = {item.iscomplete} 
+      isComplete = {item.iscomplete}
+      isStar = {item.isstar} 
       changeComplete={()=>{
         const newTodo = [...this.state.todos]
         newTodo[index].iscomplete = !newTodo[index].iscomplete
         this.setState({todos: newTodo}, this.storeData)
       }} 
+      changeStar={()=>{
+        const newTodo = [...this.state.todos]
+        newTodo[index].isstar = !newTodo[index].isstar
+        this.setState({todos: newTodo}, this.storeData)
+      }}
       deleteItem={()=>{
         const newTodo = [...this.state.todos]
         newTodo.splice(index, 1) // index위치부터 1개 지워라
@@ -55,7 +61,7 @@ export default class App extends React.Component {
     if(this.state.inputValue !== ""){
       const prevTodo = this.state.todos;
 
-      const newTodo = {title : this.state.inputValue, iscomplete: false};
+      const newTodo = {title : this.state.inputValue, iscomplete: false, isstar: false};
 
       this.setState({ 
         inputValue: '',
